@@ -1,0 +1,27 @@
+{
+  "name": "k8s-clair-dashboard",
+  "version": "0.0.1",
+  "description": "Clair vulnerability dashboard for a k8s cluster",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karrieretutor/k8s-clair-dashboard.git"
+  },
+  "keywords": [
+    "clair",
+    "kubernetes",
+    "k8s",
+    "cve",
+    "vulnerabilities"
+  ],
+  "author": "Kevin Seidel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karrieretutor/k8s-clair-dashboard/issues"
+  },
+  "homepage": "https://github.com/karrieretutor/k8s-clair-dashboard#readme"
+}
