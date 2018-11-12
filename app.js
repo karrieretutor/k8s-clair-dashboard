@@ -1,5 +1,5 @@
 const app = require('express');
 const clair = require('./modules/clairclient');
+const Report = require('./modules/report').Report;
 
-var analysis = await clair.analyze('nginx');
-console.log( analysis );
+var report = new Report();
