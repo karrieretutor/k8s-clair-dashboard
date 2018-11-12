@@ -7,3 +7,16 @@ body {
 ul {
   list-style-type: none;
 }
+
+input[type=submit] {
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  cursor: pointer;
+}
+
+form {
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+}

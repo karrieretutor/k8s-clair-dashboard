@@ -6,7 +6,7 @@ html
   body
     h1 List of images
     
-    ul
-      each image, index in images
-        li #{image}
-
+  each image, index in images
+    form(id='image', action='/imagedetails', method='post')
+      input(type='hidden', name='imagename', value=image)
+      input(type='submit', value=image)
