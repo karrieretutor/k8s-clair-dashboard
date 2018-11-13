@@ -31,14 +31,25 @@ k8s.listAllImages()
     console.log(err);
   });
 
+//
+// routes
+//
 app.get('/', (req, res) => {
   res.render('index', {images: images});
+});
+
+app.get('/health', (req, res) => {
+  res.render('health', {retryImageCount: retryImages.length});
 });
 
 app.listen(8080, () => {
   console.log('listening on 8080');
 });
 
+
+//
+// utility
+//
 var generateReport = function ( images, report ) {
   images.forEach( (image) => {
     clair.analyze(image)
