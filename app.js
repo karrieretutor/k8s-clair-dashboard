@@ -17,6 +17,9 @@ k8s.listAllImages()
   .then( (img) => {
     images = img;
     images = images.sort();
+
+    //generate intial report
+    generateReport(images, report);
   })
   .catch( (err) => {
     console.log(err);
