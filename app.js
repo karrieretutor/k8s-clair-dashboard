@@ -13,6 +13,12 @@ console.log('Starting up...');
 var report = new Report();
 
 var images;
+var retryImages = []; //list of images that need a clair retry
+
+//schedule the job to retry analyzing failed images
+//regularly
+setInterval(generateReport(retryImages), 30000);
+
 k8s.listAllImages()
   .then( (img) => {
     images = img;
@@ -44,6 +50,11 @@ var generateReport = function ( images, report ) {
         msg += image;
         msg += ' error was: ';
         msg += err;
+        msg += ' will try again with this later';
+
+        if ( !retryImages.includes(image) ) {
+          retryImages.push(image);
+        }
 
         console.log(msg);
       });
