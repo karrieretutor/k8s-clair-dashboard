@@ -86,7 +86,7 @@ class Report {
   }
 
   get reportCount() {
-    return this.reports.length;
+    return this._reports.length;
   }
 
   set reports (reports) {
