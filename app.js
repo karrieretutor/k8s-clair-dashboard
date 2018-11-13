@@ -55,7 +55,7 @@ var generateReport = function ( images, report ) {
 
     //exclude private images for now
     if ( image.startsWith('karrieretutor/') ) {
-      continue;
+      return;
     }
 
     clair.analyze(image)
