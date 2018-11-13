@@ -13,7 +13,7 @@ console.log('Starting up...');
 var report = new Report();
 
 var images;
-var retryImages = []; //list of images that need a clair retry
+//var retryImages = []; //list of images that need a clair retry
 
 //schedule the job to retry analyzing failed images
 //regularly
@@ -52,6 +52,12 @@ app.listen(8080, () => {
 //
 var generateReport = function ( images, report ) {
   images.forEach( (image) => {
+
+    //exclude private images for now
+    if ( image.startsWith('karrieretutor/') ) {
+      continue;
+    }
+
     clair.analyze(image)
       .then( (ana) => {
         report.updateImageReport(ana);
@@ -63,9 +69,9 @@ var generateReport = function ( images, report ) {
         msg += err;
         msg += ' will try again with this later';
 
-        if ( !retryImages.includes(image) ) {
-          retryImages.push(image);
-        }
+        // if ( !retryImages.includes(image) ) {
+        //   retryImages.push(image);
+        // }
 
         console.log(msg);
       });

@@ -12,10 +12,14 @@ try {
     assert.ok(dockerUname, 'DOCKER_USER required but not provided');
     assert.ok(dockerPass, 'DOCKER_PASS required but not provided');
 
-    var clair = new Clair({ clairAddress, dockerUname, dockerPass});
+    var clair = new Clair({ 
+      clairAddress: clairAddress, 
+      dockerUsername: dockerUname, 
+      dockerPassword: dockerPass
+    });
   }
   else {
-    var clair = new Clair({ clairAddress });
+    var clair = new Clair({ clairAddress: clairAddress });
   }
 }
 catch (err) {
