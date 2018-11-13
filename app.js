@@ -17,7 +17,7 @@ var images;
 
 //schedule the job to retry analyzing failed images
 //regularly
-setInterval(generateReport, 30000, retryImages);
+//setInterval(generateReport, 30000, retryImages);
 
 k8s.listAllImages()
   .then( (img) => {
