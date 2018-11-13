@@ -85,6 +85,10 @@ class Report {
     return this._lastChanged;
   }
 
+  get reportCount() {
+    return this.reports.length;
+  }
+
   set reports (reports) {
     this._reports = reports;
     this._lastChanged = new Date();

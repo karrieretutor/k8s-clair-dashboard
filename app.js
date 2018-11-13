@@ -13,7 +13,7 @@ console.log('Starting up...');
 var report = new Report();
 
 var images;
-//var retryImages = []; //list of images that need a clair retry
+var retryImages = []; //list of images that need a clair retry
 
 //schedule the job to retry analyzing failed images
 //regularly
@@ -39,7 +39,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/health', (req, res) => {
-  res.render('health', {retryImageCount: retryImages.length});
+  res.render('health', {
+    retryImageCount: retryImages.length,
+    reportCount: report.reportCount()
+  });
 });
 
 app.listen(8080, () => {
