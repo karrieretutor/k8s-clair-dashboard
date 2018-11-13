@@ -29,3 +29,20 @@ app.get('/', (req, res) => {
 app.listen(8080, () => {
   console.log('listening on 8080');
 });
+
+var generateReport = function ( images, report ) {
+  images.forEach( (image) => {
+    clair.analyze(image)
+      .then( (ana) => {
+        report.updateImageReport(ana);
+      })
+      .catch ( (err) => {
+        let msg = 'Could not analyze image ';
+        msg += image;
+        msg += ' error was: ';
+        msg += err;
+
+        console.log(msg);
+      });
+  });
+}
