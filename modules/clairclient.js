@@ -6,7 +6,7 @@ const analyze = function ( image ) {
     const clairAddress = process.env.CLAIR_ADDRESS || 'http://localhost:6060';
     try {
       const clair = new Clair({ clairAddress });
-      const analysis = clair.analyze({ image: image });
+      var analysis = clair.analyze({ image: image });
     }
     catch (err) {
       reject(err);
