@@ -56,12 +56,14 @@ app.listen(8080, () => {
 var generateReport = function ( images, report ) {
   images.forEach( (image) => {
 
+    let analyzeOptions = {};
+    analyzeOptions.image = image;
     //exclude private images for now
     if ( image.startsWith('karrieretutor/') ) {
-      return;
+      analyzeOptions.isPublic = false;
     }
 
-    clair.analyze(image)
+    clair.analyze(analyzeOptions)
       .then( (ana) => {
         report.updateImageReport(ana);
       })
