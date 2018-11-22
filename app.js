@@ -25,7 +25,7 @@ k8s.listAllImages()
     images = images.sort();
 
     //generate intial report
-    generateReport(images, report);
+    generateReport();
   })
   .catch( (err) => {
     console.log(err);
@@ -53,35 +53,45 @@ app.listen(8080, () => {
 //
 // utility
 //
-var generateReport = function ( images, report ) {
-  images.forEach( (image) => {
+var generateReport = function ( imageindex ) {
 
-    let analyzeOptions = {};
-    analyzeOptions.image = image;
-    //exclude private images for now
-    if ( image.startsWith('karrieretutor/') ) {
-      analyzeOptions.isPublic = false;
-    }
-    else {
-      analyzeOptions.isPublic = true;
-    }
+  if ( imageindex === undefined ) {
+    imageindex = 0;
+  } 
 
-    clair.analyze(analyzeOptions)
-      .then( (ana) => {
-        report.updateImageReport(ana);
-      })
-      .catch ( (err) => {
-        let msg = 'Could not analyze image ';
-        msg += image;
-        msg += ' error was: ';
-        msg += err;
-        msg += ' will try again with this later';
+  if ( imageindex >= images.length ){
+    return;
+  }
 
-        // if ( !retryImages.includes(image) ) {
-        //   retryImages.push(image);
-        // }
+  let image = images[imageindex];
 
-        console.log(msg);
-      });
-  });
+  let analyzeOptions = {};
+  analyzeOptions.image = image;
+  //exclude private images for now
+  if ( image.startsWith('karrieretutor/') ) {
+    analyzeOptions.isPublic = false;
+  }
+  else {
+    analyzeOptions.isPublic = true;
+  }
+
+  clair.analyze(analyzeOptions)
+    .then( (ana) => {
+      report.updateImageReport(ana);
+      generateReport(++imageindex)
+    })
+    .catch ( (err) => {
+      let msg = 'Could not analyze image ';
+      msg += image;
+      msg += ' error was: ';
+      msg += err;
+      msg += ' will try again with this later';
+
+      // if ( !retryImages.includes(image) ) {
+      //   retryImages.push(image);
+      // }
+
+      console.log(msg);
+      generateReport(++imageindex);
+    });
 }
