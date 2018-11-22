@@ -27,10 +27,10 @@ catch (err) {
     + err);
 }
 
-const analyze = function ( image ) {
+const analyze = function ( options ) {
   return new Promise ( (resolve, reject) => {
     try {
-      var analysis = clair.analyze({ image: image });
+      var analysis = clair.analyze(options);
     }
     catch (err) {
       reject(err);
