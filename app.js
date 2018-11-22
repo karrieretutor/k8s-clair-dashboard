@@ -62,6 +62,9 @@ var generateReport = function ( images, report ) {
     if ( image.startsWith('karrieretutor/') ) {
       analyzeOptions.isPublic = false;
     }
+    else {
+      analyzeOptions.isPublic = true;
+    }
 
     clair.analyze(analyzeOptions)
       .then( (ana) => {
