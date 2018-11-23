@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
 
 app.get('/health', (req, res) => {
   res.render('health', {
+    imagesCount: images.length,
     retryImageCount: retryImages.length,
     reportCount: report.reportCount
   });
